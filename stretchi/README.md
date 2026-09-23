@@ -24,6 +24,16 @@ To learn more about eve, explore these resources:
 - [Build an Agent tutorial](https://eve.dev/docs/tutorial/first-agent) — build and deploy an agent step by step.
 - [eve on GitHub](https://github.com/vercel/eve) — view the source and contribute.
 
+## Exercise data
+
+The catalog is loaded from [wger](https://wger.de) and stored in Supabase. wger's exercise content is [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Keep the wger credit and each row's `license_author`. Images and non-English translations are left out.
+
+Run `db/001_exercises.sql` in the Supabase SQL editor once. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env.local`, then:
+
+```bash
+npm run import:wger
+```
+
 ## Deploy on Vercel
 
 Deploy your agent to [Vercel](https://vercel.com) from the project root:
