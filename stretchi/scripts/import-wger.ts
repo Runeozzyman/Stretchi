@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { supabase } from "./supabase/client";
 
 const ENGLISH = 2;
 const WGER_PAGE = "https://wger.de/api/v2/exerciseinfo/?format=json&limit=50";
@@ -42,14 +42,6 @@ type EnglishExercise = {
   exercise: ExerciseInfo;
   english: Translation;
 };
-
-function requireEnv(name: string): string {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`Missing ${name}. Add it to .env.local before importing.`);
-  }
-  return value;
-}
 
 function slugify(value: string): string {
   const slug = value
@@ -117,7 +109,6 @@ function englishExercises(exercises: ExerciseInfo[]): EnglishExercise[] {
 }
 
 async function upsertChunked(
-  supabase: SupabaseClient,
   table: string,
   rows: Record<string, unknown>[],
   onConflict: string,
@@ -133,7 +124,6 @@ async function upsertChunked(
 }
 
 async function deleteLinks(
-  supabase: SupabaseClient,
   table: "exercise_areas" | "exercise_equipment",
   exerciseIds: string[],
 ): Promise<void> {
@@ -145,9 +135,7 @@ async function deleteLinks(
 }
 
 async function main(): Promise<void> {
-  const supabase = createClient(requireEnv("SUPABASE_URL"), requireEnv("SUPABASE_SERVICE_ROLE_KEY"), {
-    auth: { persistSession: false },
-  });
+
 
   const exercises = englishExercises(await fetchExercises());
   const areas = new Map<number, { slug: string; name: string; wger_muscle_id: number }>();
@@ -177,8 +165,8 @@ async function main(): Promise<void> {
     }
   }
 
-  const areaRows = await upsertChunked(supabase, "body_areas", [...areas.values()], "wger_muscle_id");
-  const equipmentRows = await upsertChunked(supabase, "equipment", [...equipment.values()], "wger_equipment_id");
+  const areaRows = await upsertChunked("body_areas", [...areas.values()], "wger_muscle_id");
+  const equipmentRows = await upsertChunked("equipment", [...equipment.values()], "wger_equipment_id");
   const areaIds = new Map(areaRows.map((row) => [Number(row.wger_muscle_id), String(row.id)]));
   const equipmentIds = new Map(equipmentRows.map((row) => [Number(row.wger_equipment_id), String(row.id)]));
 
@@ -193,12 +181,12 @@ async function main(): Promise<void> {
     license_author: exercise.license_author,
   }));
 
-  const savedExercises = await upsertChunked(supabase, "exercises", exerciseRows, "wger_uuid");
+  const savedExercises = await upsertChunked("exercises", exerciseRows, "wger_uuid");
   const exerciseIds = new Map(savedExercises.map((row) => [String(row.wger_uuid), String(row.id)]));
   const ids = [...exerciseIds.values()];
 
-  await deleteLinks(supabase, "exercise_areas", ids);
-  await deleteLinks(supabase, "exercise_equipment", ids);
+  await deleteLinks("exercise_areas", ids);
+  await deleteLinks("exercise_equipment", ids);
 
   const areaLinks: { exercise_id: string; area_id: string; is_primary: boolean }[] = [];
   const equipmentLinks: { exercise_id: string; equipment_id: string }[] = [];
@@ -230,8 +218,8 @@ async function main(): Promise<void> {
     }
   }
 
-  await upsertChunked(supabase, "exercise_areas", areaLinks, "exercise_id,area_id");
-  await upsertChunked(supabase, "exercise_equipment", equipmentLinks, "exercise_id,equipment_id");
+  await upsertChunked("exercise_areas", areaLinks, "exercise_id,area_id");
+  await upsertChunked("exercise_equipment", equipmentLinks, "exercise_id,equipment_id");
 
   console.log(
     `Imported ${exerciseRows.length} English exercises, ${areas.size} areas, and ${equipment.size} equipment rows.`,
