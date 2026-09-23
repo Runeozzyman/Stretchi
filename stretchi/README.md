@@ -26,12 +26,10 @@ To learn more about eve, explore these resources:
 
 ## Exercise data
 
-The catalog is loaded from [wger](https://wger.de) and stored in Supabase. wger's exercise content is [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Keep the wger credit and each row's `license_author`. Images and non-English translations are left out.
-
-Run `db/001_exercises.sql` in the Supabase SQL editor once. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env.local`, then:
+The catalog lives in `scripts/excercises.json` and is loaded into Supabase. Run `db/001_exercises.sql` in the Supabase SQL editor once. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env.local`, then:
 
 ```bash
-npm run import:wger
+npm run upload:exercises
 ```
 
 ## Deploy on Vercel
