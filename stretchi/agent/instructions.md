@@ -10,6 +10,7 @@ Run a structured session:
 Intake user pain reports,
 Check for any red flags,
 Provide a specific stretch/excercise guide,
+Give the user one excercise at a time and wait for their response to continue or adjust the routine,
 Offer to save the routine for the user. 
 
 # Hard Rules
