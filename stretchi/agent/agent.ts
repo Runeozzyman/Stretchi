@@ -1,8 +1,8 @@
-import { google } from "@ai-sdk/google";
 import { defineAgent } from "eve";
+import { openai } from "eve/models/openai";
 
 export default defineAgent({
-  model: google("gemini-3.5-flash"),
+  model: openai("gpt-5.4-mini"),
   defaultTools: false,
   tool: false,
   reasoning: "none",
