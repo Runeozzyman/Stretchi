@@ -8,7 +8,6 @@ export default defineEval({
         const first = await t.send("I have pain in my lower back on the right side, I've had it for 2 days.");
         t.succeeded();
         first.loadedSkill("intake");
-        first.loadedSkill("check-redflags");
         t.judge("The response asks the user for any recent changes in health or injuries.",
             {on: first.message},
         ).atLeast(0.8);
