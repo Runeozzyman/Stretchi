@@ -9,7 +9,7 @@
   "scripts": {
     "build": "eve build",
     "deploy": "eve deploy",
-    "dev": "eve dev",
+    "dev": "eve dev --no-default-extensions",
     "eval": "eve eval",
     "start": "eve start",
     "typecheck": "tsc",
@@ -17,10 +17,11 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.75",
+    "@ai-sdk/openai": "^4.0.75",
     "@supabase/supabase-js": "^2.117.1",
     "@vercel/connect": "2.2.0",
     "ai": "^7.0.105",
-    "eve": "^0.59.1",
+    "eve": "^0.66.3",
     "zod": "4.5.4"
   },
   "devDependencies": {
