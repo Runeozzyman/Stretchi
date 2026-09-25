@@ -4,7 +4,7 @@ import { defineEval } from "eve/evals";
 
 export default defineEval({
     async test(t){
-        
+
         const first = await t.send("I have pain in my lower back on the right side, I've had it for 2 days.");
         t.succeeded();
         first.loadedSkill("intake");
@@ -15,7 +15,7 @@ export default defineEval({
 
         const second = await first.session.send("No recent injuries or health changes");
         second.loadedSkill("check-redflags");
-        t.judge("The response does not ask for location or duration of pain. It asks for any available equipment",
+        t.judge("The response does not ask for the location of pain, or how long they've been experiencing it. It asks for any available equipment",
             {on: second.message},
         ).atLeast(0.8);
 
