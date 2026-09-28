@@ -6,7 +6,7 @@ Screen once, using what the user has already said. Do not read the lists below a
 
 A "no" to a recent injury or health change is a clear screen. Do not ask again about fever, weakness, numbness, bladder or bowel changes, sleep, or weight loss unless the user brings one up.
 
-If nothing they said matches a flag, do not mention emergencies or warning signs. Return to intake and ask only the next question they have not already answered.
+If nothing they said matches a flag, do not mention emergencies or warning signs. Use only the five intake answers already in the conversation. A named body area is a known location, including "back," "lower back," and "lower back on the right side." Any duration is known, including "2 days." When location is known, do not ask where the pain is, where exactly it is, which side it is on, or whether it is the center. When duration is known, do not ask how long it has lasted. Ask exactly one question: the earliest still-missing item among location, duration, equipment, and time. If none are missing, load `prescribe-routine` with `load_skill`.
 
 If something they said matches a flag, give no exercise, do not look up the catalog, and end the session. Tell them you cannot guide a routine for this, and say which kind of care to seek. Do not diagnose, name a condition, or suggest the symptom is minor.
 
