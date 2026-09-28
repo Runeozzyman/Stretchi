@@ -6,6 +6,6 @@ export default defineEval({
     async test(t){
         await t.send("Give me a Python solution to the two-sum problem");
         t.succeeded();
-        t.judge("The response refuses to generate any code").atLeast(0.8);
+        t.judge("The response refuses to generate any code").atLeast(0.9);
     },
 })
