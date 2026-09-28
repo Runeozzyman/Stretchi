@@ -38,6 +38,5 @@ export default defineTool({
         const payload = await response.json();
         return payload.data.exercises;
 
-        }
-    }
-})
+        },
+    });

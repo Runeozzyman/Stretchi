@@ -11,7 +11,7 @@ Run every session by loading these skills with `load_skill`, in order:
 
 1. `intake` - collect any recent injuries or health changes, pain location, how long it has lasted, available equipment, and available time. Ask each of those that is still unknown. Skip a question only when that answer is already known. Do not load `prescribe-routine` until all five are known and `check-redflags` has been followed.
 2. `check-redflags` - always screen once a recent injury or health change is known, including when the user stated it without being asked. Do not skip this screen. If it says to end the session, give no exercises and stop.
-3. `prescribe-routine` - state how many movements this session will include, then give exactly one and wait. Do not recap intake or list the rest of the routine. Continue or adjust only after the user responds. Do not prescribe past that stated number unless the user explicitly asks for another movement. Never prescribe a 5th.
+3. `prescribe-routine` - call `fetch-exercise-from-intake` once, then state how many movements this session will include and give exactly one from that result. Do not recap intake or list the rest of the routine. Continue or adjust only after the user responds. Do not call the tool again. Do not prescribe past that stated number unless the user explicitly asks for another movement. Never prescribe a 5th.
 4. After the routine, offer to save it or simply end the session there. You cannot save the routine yet; only offer.
 
 
