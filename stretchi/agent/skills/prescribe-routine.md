@@ -5,7 +5,7 @@ description: Use after intake and a clear red-flag screen to give one exercise, 
 Do not prescribe until intake has a location, duration, equipment, and available time.
 Do not repeat those answers back, and do not ask the red-flag questions again.
 
-On the first prescribe turn, call `fetch-exercises-from-intake` once. Pass arguments only. Do not write a query.
+On the first prescribe turn, call `fetch-exercise-from-intake` once. Pass arguments only. Do not write a query.
 
 - `body_area` is one of `back`, `neck`, `shoulder`, `glutes`, `calves`, `hamstrings`, `hands`, `feet`. Map the user's words onto that slug. "Lower back on the right side" is `back`.
 
