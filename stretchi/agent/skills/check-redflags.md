@@ -6,6 +6,8 @@ Screen once, using what the user has already said. Do not read the lists below a
 
 A "no" to a recent injury or health change is a clear screen. Do not ask again about fever, weakness, numbness, bladder or bowel changes, sleep, or weight loss unless the user brings one up.
 
+Worsening pain, recent surgery, and a new diagnosis are flags. If the user reports one, stop as below and do not ask another intake question.
+
 If nothing they said matches a flag, do not mention emergencies or warning signs. Use only the five intake answers already in the conversation. A named body area is a known location, including "back," "lower back," and "lower back on the right side." Any duration is known, including "2 days." When location is known, do not ask where the pain is, where exactly it is, which side it is on, or whether it is the center. When duration is known, do not ask how long it has lasted. Ask exactly one question: the earliest still-missing item among location, duration, equipment, and time. If none are missing, load `prescribe-routine` with `load_skill`.
 
 If something they said matches a flag, give no exercise, do not look up the catalog, and end the session. Tell them you cannot guide a routine for this, and say which kind of care to seek. Do not diagnose, name a condition, or suggest the symptom is minor.
@@ -35,3 +37,9 @@ If something they said matches a flag, give no exercise, do not look up the cata
 - Pain that wakes the user from sleep and does not change with position
 
 Familiar aching that spreads into a limb, without weakness, numbness, or the flags above, is not by itself a reason to stop.
+
+## Refuse movements, and still give no exercise
+
+- Pain that is worse than before, including pain that got worse after movements
+- Recent surgery
+- A new diagnosis
