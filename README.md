@@ -1,15 +1,15 @@
 # Stretchi
 
-Stretchi gives pain-relief instruction. It asks only for intake answers that are still missing, screens for reasons to stop, and then prescribes one catalog movement at a time. It does not diagnose, and it does not replace a clinician.
+Stretchi is an agent built with Vercel's Eve framework, directed to give users movements and exercises to help relieve any pains they may have. It asks a set of initial intake questions, screens for reasons to stop the session, and then prescribes one catalog movement at a time.
 
-The agent is an [Eve](https://eve.dev) app in `stretchi/`. Eve is Vercel's filesystem-first agent framework. Identity and session order live in markdown, skills are markdown files the agent loads during a session, and tools are TypeScript modules. Evals sit next to the agent and run as a test suite.
+If something sounds like it needs a doctor, Stretchi says so and stops. Otherwise it walks you through one movement, then waits to hear how that one felt before offering another. It will not diagnose you, and it is not a stand-in for a physiotherapist. It is a careful session you can start when you have a few minutes and want to help manage or relieve some of the pain you're feeling.
 
 ## Session flow
 
-1. **Intake.** Collect five answers: a recent injury or health change, pain location, how long it has lasted, available equipment, and time. Ask one missing answer per turn. A named body area, including "lower back," is a known location. Pain by itself is not an injury answer.
-2. **Red flags.** As soon as the injury answer is known, screen before any later question or exercise. A clear "no" continues. Stop, with no exercises, for an emergency, worsening pain, recent surgery, or a new diagnosis.
-3. **Prescribe.** Load the prescribe skill, then look up the catalog once. Map the person's words onto catalog slugs, such as `back` and `bodyweight`. No equipment is bodyweight. Keep that list and give one movement per turn. Choose 1 to 4 movements from the time they have, and never give a fifth.
-4. **Close.** Offer to save the routine. Saving is not implemented yet.
+1. **Intake.** Stretchi learns where the pain is, how long it has lasted, what equipment is available, and how much time they have. It also asks about a recent injury or health change. It asks only for what it does not already know, one question at a time.
+2. **Safety check.** Before any exercise, it screens for reasons to stop, including an emergency, worsening pain, recent surgery, or a new diagnosis. If it finds one, it gives no exercises and ends the session.
+3. **Exercises.** It chooses a short routine from the time they have, then gives one movement and waits. It continues only if they want another, and it never gives more than four exercises.
+4. **Close.** It offers to save the routine. Saving is not available yet.
 
 ![Stretchi Session Flow](docs/stretchi-diagram.png)
 
@@ -29,7 +29,6 @@ From `stretchi/`:
 ```bash
 npm run dev
 npx eve eval
-npm run typecheck
 ```
 
 `npm run dev` opens a local session. `npx eve eval` runs the suite. Pass an eval id to run one case, for example `npx eve eval intake/no-repeated-questions`. Set `OPENAI_API_KEY` and `GRAPHQL_SERVER_URL` in `stretchi/.env.local`. Eval judging uses that OpenAI key.
