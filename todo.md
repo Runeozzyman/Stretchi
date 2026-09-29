@@ -2,6 +2,8 @@
 
 ## Current Tasks
 - [ ] [P1] [2026-09-25] Refactor intake to take data from a pre-screen questionnaire alternatively (body map, simple Q&A)
+- [ ] [P1] [2026-09-28] Explore possible agent connections (discord, slack ?)
+- [ ] [P1] [2026-09-28] Create session flow diagram for readme
 
 ## Completed Tasks
 - [x] [P1] [2026-09-23] Refactor model to GPT-6 Luna (low cost, high volume)
