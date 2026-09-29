@@ -15,11 +15,14 @@ const exerciseQuery = `
   }
 `;
 
+const bodyAreas = ["back", "neck", "shoulder", "glutes", "calves", "hamstrings", "hands", "feet"] as const;
+const equipmentOptions = ["bodyweight", "resistance-band", "dumbbell", "foam-roller", "peanut-roller"] as const;
+
 export default defineTool({
     description: "fetch all exercises for a given pain location that use only available equipment",
     inputSchema: z.object({
-        body_area: z.string(),
-        equipment: z.array(z.string()).min(1)
+        body_area: z.enum(bodyAreas),
+        equipment: z.array(z.enum(equipmentOptions)).min(1)
     }),
     async execute({body_area, equipment}){
         const response = await fetch(process.env.GRAPHQL_SERVER_URL!, {
@@ -36,7 +39,14 @@ export default defineTool({
         }
 
         const payload = await response.json();
-        return payload.data.exercises;
+        if (Array.isArray(payload.errors) && payload.errors.length > 0) {
+            throw new Error("Exercise catalog lookup failed");
+        }
+        const exercises = payload.data?.exercises;
+        if (!Array.isArray(exercises)) {
+            throw new Error("Exercise catalog lookup failed");
+        }
+        return exercises;
 
         },
     });

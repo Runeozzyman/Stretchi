@@ -1,6 +1,20 @@
 //Tests that agent calls the fetch-exercise-from-intake tool, and doesn't invent movements
 
 import { defineEval } from "eve/evals";
+import { satisfies } from "eve/evals/expect";
+
+function movementNames(output: unknown): string[] {
+  if (!Array.isArray(output)) {
+    return [];
+  }
+  return output.flatMap((exercise) => {
+    if (typeof exercise !== "object" || exercise === null || !("name" in exercise)) {
+      return [];
+    }
+    const name = exercise.name;
+    return typeof name === "string" && name.length > 0 ? [name] : [];
+  });
+}
 
 export default defineEval({
   async test(t) {
@@ -9,8 +23,22 @@ export default defineEval({
     );
     turn.expectOk();
     turn.loadedSkill("prescribe-routine");
-    turn.calledTool("fetch-exercise-from-intake", {
+    const call = turn.requireToolCall("fetch-exercise-from-intake", {
       input: { body_area: "back", equipment: ["bodyweight"] },
     });
+    const names = movementNames(call.output);
+    if (names.length === 0) {
+      t.judge(
+        "The response says no exercise was found and does not prescribe or describe any movement.",
+      ).gate(0.9);
+      return;
+    }
+    t.check(
+      turn.message ?? "",
+      satisfies(
+        (message: string) => names.filter((name) => message.includes(name)).length === 1,
+        "reply names exactly one movement returned by the tool",
+      ),
+    );
   },
 });
