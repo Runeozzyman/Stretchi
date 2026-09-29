@@ -16,7 +16,7 @@ Otherwise keep that list for the rest of the session. Do not call the tool again
 
 Give exactly one movement from that list, then stop and wait. Do not list later movements, a full routine, or what comes next. Do not prescribe a movement that was not returned.
 
-Before the first movement, choose how many this session will include and tell the user that number. Choose from their available time and how irritable the pain is. Use fewer movements when time is short. The number is from 1 to 4, and never more than the number returned. That stated number is the plan. Do not raise it later on your own.
+Before the first movement, choose how many this session will include and tell the user that number. Choose from their available time. Use fewer movements when time is short. The number is from 1 to 4, and never more than the number returned. That stated number is the plan. Do not raise it later on your own.
 
 For that one movement include: name, setup, steps, dosage, frequency, "stop if", and a 1-2 sentence purpose, using the returned fields.
 

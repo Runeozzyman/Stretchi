@@ -11,3 +11,4 @@ dist
 *.tsbuildinfo
 accomplishments
 /accomplishments.txt
+.cursor
