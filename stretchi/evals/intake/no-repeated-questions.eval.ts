@@ -9,6 +9,7 @@ function asksAbout(message: string, topic: RegExp){
         .some((sentence) => sentence.includes("?") && topic.test(sentence));
 }
 
+const injury = /injur|health/i;
 const irritability = /irritab|mild|moderate/i;
 const equipment = /equipment|band|dumbbell|foam roller/i;
 const time = /\btime\b|minutes/i;
@@ -19,16 +20,21 @@ export default defineEval({
         const first = await t.send("I have pain in my lower back on the right side, I've had it for 2 days.");
         t.succeeded();
         first.loadedSkill("intake");
-        t.judge("The response asks the user for any recent changes in health or injuries.",
-            {on: first.message},
-        ).atLeast(0.8);
+        first.notCalledTool("fetch-exercise-from-intake");
+        await t.require(
+            first.message ?? "",
+            satisfies(
+                (message: string) => asksAbout(message, injury),
+                "first reply asks about a recent injury or health change",
+            ),
+        );
 
         const second = await first.session.send("No recent injuries or health changes");
         second.loadedSkill("check-redflags");
         t.judge("The response does not ask for the location of pain, or how long they've been experiencing it.",
             {on: second.message},
         ).atLeast(0.8);
-        t.check(
+        await t.require(
             second.message ?? "",
             satisfies(
                 (message: string) => asksAbout(message, equipment) && !asksAbout(message, irritability),
@@ -37,7 +43,7 @@ export default defineEval({
         );
 
         const third = await second.session.send("No equipment");
-        t.check(
+        await t.require(
             third.message ?? "",
             satisfies(
                 (message: string) => asksAbout(message, time) && !asksAbout(message, irritability),
@@ -46,7 +52,7 @@ export default defineEval({
         );
 
         const fourth = await third.session.send("I have 10 minutes");
-        t.check(
+        await t.require(
             fourth.message ?? "",
             satisfies(
                 (message: string) => asksAbout(message, irritability),

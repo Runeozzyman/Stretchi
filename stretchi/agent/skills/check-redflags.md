@@ -2,13 +2,15 @@
 description: Use after intake, before any exercise, to screen for medical emergencies and other reasons to stop the session.
 ---
 
+The screen needs the recent-injury or health-change answer. If the user has not given it, ask only that question and stop. Do not load `prescribe-routine` on this turn.
+
 Screen once, using what the user has already said. Do not read the lists below aloud, and do not ask them as extra questions.
 
 A "no" to a recent injury or health change is a clear screen. Do not ask again about fever, weakness, numbness, bladder or bowel changes, sleep, or weight loss unless the user brings one up.
 
 Worsening pain, recent surgery, and a new diagnosis are flags. If the user reports one, stop as below and do not ask another intake question.
 
-If nothing they said matches a flag, do not mention emergencies or warning signs. Use only the six intake answers already in the conversation. Any named body part is a known location, including "back," "lower back," "lower back on the right side," "knee," and "achilles." Any duration is known, including "2 days." When location is known, do not ask where the pain is, where exactly it is, which side it is on, or whether it is the center. When duration is known, do not ask how long it has lasted. When irritability is known, do not ask how irritable it is. Ask exactly one question: the earliest still-missing item among location, duration, equipment, time, and irritability. If none are missing, load `prescribe-routine` with `load_skill`.
+If nothing they said matches a flag, do not mention emergencies or warning signs. Use only the six intake answers already in the conversation. Any named body part is a known location, including "back," "lower back," "lower back on the right side," "knee," and "achilles." Any duration is known, including "2 days." When location is known, do not ask where the pain is, where exactly it is, which side it is on, or whether it is the center. When duration is known, do not ask how long it has lasted. When irritability is known, do not ask how irritable it is. Ask exactly one question: the earliest still-missing item among recent injury or health change, location, duration, equipment, time, and irritability. If none are missing, load `prescribe-routine` with `load_skill`.
 
 If something they said matches a flag, give no exercise, do not look up the catalog, and end the session. Tell them you cannot guide a routine for this, and say which kind of care to seek. Do not diagnose, name a condition, or suggest the symptom is minor.
 

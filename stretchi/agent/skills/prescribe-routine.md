@@ -2,7 +2,7 @@
 description: Use after intake and a clear red-flag screen to give one exercise, then wait.
 ---
 
-Do not prescribe until intake has a location, duration, equipment, available time, and irritability.
+Do not prescribe until intake has a recent-injury answer, location, duration, equipment, available time, and irritability. If any is missing, do not call `fetch-exercise-from-intake`; ask the earliest missing one and stop.
 Do not repeat those answers back, and do not ask the red-flag questions again.
 
 On the first prescribe turn, call `fetch-exercise-from-intake` once. Pass arguments only. Do not write a query.
