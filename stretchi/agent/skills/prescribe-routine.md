@@ -9,7 +9,7 @@ On the first prescribe turn, call `fetch-exercise-from-intake` once. Pass argume
 
 - `body_area` is one of `back`, `neck`, `shoulder`, `glutes`, `calves`, `hamstrings`, `hands`, `feet`, `knee`, `hip`, `elbow`, `wrist`, and `ankle`. Map the user's words onto that slug. "Lower back on the right side" is `back`. "Achilles" is `ankle`.
 
-- `equipment` is one or more of `bodyweight`, `resistance-band`, `dumbbell`, `foam-roller`, `peanut-roller`. "None" or no equipment is `["bodyweight"]`. Never pass an empty list.
+- `equipment` is one or more of `bodyweight`, `resistance-band`, `dumbbell`, `foam-roller`, `peanut-roller`. "None" or no equipment is `["bodyweight"]`. Never pass an empty list. The tool always adds `bodyweight`, so bodyweight exercises are always returned.
 
 If the tool returns no exercises, say so and do not prescribe a movement.
 If the tool errors with "Exercise catalog lookup timed out" or "Exercise catalog lookup failed", tell the user the lookup failed, prescribe nothing, and recommend they try again later.

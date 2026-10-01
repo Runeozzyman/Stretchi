@@ -1,6 +1,6 @@
 import { defineEval } from "eve/evals";
 import { equals, satisfies } from "eve/evals/expect";
-import { mildBackIntake, prescribesMovement } from "./catalog.ts";
+import { mildBackIntake, prescribesMovement, sameEquipment } from "./catalog.ts";
 
 export default defineEval({
   async test(t) {
@@ -12,7 +12,7 @@ export default defineEval({
     turn.expectOk();
     turn.loadedSkill("prescribe-routine");
     const call = turn.requireToolCall("fetch-exercise-from-intake", {
-      input: { body_area: "back", equipment: ["bodyweight"] },
+      input: { body_area: "back", equipment: sameEquipment([]) },
     });
     t.check(call.output, equals([]));
     t.check(

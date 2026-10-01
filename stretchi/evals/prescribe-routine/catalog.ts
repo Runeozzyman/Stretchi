@@ -14,6 +14,17 @@ export function movementNames(output: unknown): string[] {
   });
 }
 
+export function sameEquipment(expected: readonly string[]) {
+  const want = new Set(["bodyweight", ...expected]);
+  return (value: unknown): boolean => {
+    if (!Array.isArray(value)) {
+      return false;
+    }
+    const got = new Set(["bodyweight", ...value]);
+    return got.size === want.size && [...want].every((item) => got.has(item));
+  };
+}
+
 export function namedIn(message: string, catalog: readonly string[]): string[] {
   return catalog.filter((name) => message.includes(name));
 }

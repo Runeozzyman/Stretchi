@@ -23,7 +23,7 @@ const attempts = 2;
 
 
 export default defineTool({
-    description: "fetch all exercises for a given pain location that use only available equipment",
+    description: "fetch all exercises for a given pain location that use only available equipment; bodyweight is always included",
     inputSchema: z.object({
         body_area: z.enum(bodyAreas),
         equipment: z.array(z.enum(equipmentOptions)).min(1)
@@ -35,6 +35,7 @@ export default defineTool({
         if (process.env.STRETCHI_CATALOG_FIXTURE === "empty") {
             return [];
         }
+        const available = Array.from(new Set<(typeof equipmentOptions)[number]>(["bodyweight", ...equipment]));
         for (let attempt = 1; ; attempt++) {
             try {
                 const response = await fetch(process.env.GRAPHQL_SERVER_URL!, {
@@ -42,7 +43,7 @@ export default defineTool({
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({
                         query: exerciseQuery,
-                        variables: { body_area, equipment },
+                        variables: { body_area, equipment: available },
                     }),
                     signal: AbortSignal.timeout(timeout),
                 });

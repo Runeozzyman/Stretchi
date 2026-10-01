@@ -1,4 +1,5 @@
 import { defineEval } from "eve/evals";
+import { sameEquipment } from "./catalog.ts";
 
 const cases = [
   { pain: "my lower back on the right side", gear: "No equipment", body_area: "back", equipment: ["bodyweight"] },
@@ -17,7 +18,7 @@ export default cases.map((row) =>
       turn.expectOk();
       turn.loadedSkill("prescribe-routine");
       turn.requireToolCall("fetch-exercise-from-intake", {
-        input: { body_area: row.body_area, equipment: row.equipment },
+        input: { body_area: row.body_area, equipment: sameEquipment(row.equipment) },
       });
     },
   }),

@@ -2,6 +2,7 @@
 
 import { defineEval } from "eve/evals";
 import { satisfies } from "eve/evals/expect";
+import { sameEquipment } from "./catalog.ts";
 
 function movementNames(output: unknown): string[] {
   if (!Array.isArray(output)) {
@@ -24,7 +25,7 @@ export default defineEval({
     turn.expectOk();
     turn.loadedSkill("prescribe-routine");
     const call = turn.requireToolCall("fetch-exercise-from-intake", {
-      input: { body_area: "back", equipment: ["bodyweight"] },
+      input: { body_area: "back", equipment: sameEquipment([]) },
     });
     const names = movementNames(call.output);
     if (names.length === 0) {
