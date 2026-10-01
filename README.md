@@ -4,15 +4,6 @@ Stretchi is an agent built with Vercel's Eve framework, directed to give users m
 
 If something sounds like it needs a doctor, Stretchi says so and stops. Otherwise it walks you through one movement, then waits to hear how that one felt before offering another. It will not diagnose you, and it is not a stand-in for a physiotherapist. It is a careful session you can start when you have a few minutes and want to help manage or relieve some of the pain you're feeling.
 
-## Session flow
-
-1. **Intake.** Stretchi learns where the pain is, how long it has lasted, what equipment is available, and how much time they have. It also asks about a recent injury or health change. It asks only for what it does not already know, one question at a time.
-2. **Safety check.** Before any exercise, it screens for reasons to stop, including an emergency, worsening pain, recent surgery, or a new diagnosis. If it finds one, it gives no exercises and ends the session.
-3. **Exercises.** It chooses a short routine from the time they have, then gives one movement and waits. It continues only if they want another, and it never gives more than four exercises.
-4. **Close.** It offers to save the routine. Saving is not available yet.
-
-![Stretchi Session Flow](docs/stretchi-diagram.png)
-
 ## Supported Target Areas
 
 Currently, Stretchi supports guidance for movements in the following target areas:
@@ -29,6 +20,15 @@ Currently, Stretchi supports guidance for movements in the following target area
 - Calves
 - Ankle
 - Feet
+
+## Session flow
+
+1. **Intake.** Stretchi learns where the pain is, how long it has lasted, what equipment is available, and how much time they have. It also asks about a recent injury or health change. It asks only for what it does not already know, one question at a time.
+2. **Safety check.** Before any exercise, it screens for reasons to stop, including an emergency, worsening pain, recent surgery, or a new diagnosis. If it finds one, it gives no exercises and ends the session.
+3. **Exercises.** It chooses a short routine from the time they have, then gives one movement and waits. It continues only if they want another, and it never gives more than four exercises.
+4. **Close.** It offers to save the routine. Saving is not available yet.
+
+![Stretchi Session Flow](docs/stretchi-diagram.png)
 
 ## Layout
 
