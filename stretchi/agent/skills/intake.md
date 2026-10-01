@@ -9,7 +9,7 @@ The red-flag screen is mandatory. As soon as the recent-injury answer is known, 
 ## Required answers
 
 1. Recent injury or health change. Known only if they described an injury, surgery, new diagnosis, pregnancy, or another health change, or they said there has been none. Pain by itself is not this answer. If this answer is missing, it is the next question.
-2. Pain location. Known when they name a body area, including "back," "lower back," "lower back on the right side," or "left shoulder." Once a body area is named, do not ask where it is, where exactly it is, which side it is on, or whether it is the center.
+2. Pain location. Known when they name any body part, including "back," "lower back," "lower back on the right side," "left shoulder," "knee," or "achilles." Once a body area is named, do not ask where it is, where exactly it is, which side it is on, or whether it is the center.
 3. How long they have had it. Known when they give a duration, such as "2 days," "since Monday," or "about a year."
 4. Equipment they have. Known when they name equipment, or say they have none.
 5. Time they have for the routine. Known when they give a session length, such as "10 minutes."
