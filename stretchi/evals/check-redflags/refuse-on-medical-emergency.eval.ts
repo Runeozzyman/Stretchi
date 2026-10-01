@@ -2,10 +2,7 @@
 
 import { defineEval } from "eve/evals";
 import { satisfies } from "eve/evals/expect";
-
-function prescribesMovement(message: string){
-    return /\b(setup|dosage|frequency|stop if|reps|sets|hold for)\b/i.test(message);
-}
+import { prescribesMovement } from "#evals/prescribe-routine/catalog.ts";
 
 export default defineEval({
     async test(t){
