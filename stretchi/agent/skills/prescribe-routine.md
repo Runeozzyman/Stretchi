@@ -2,7 +2,7 @@
 description: Use after intake and a clear red-flag screen to give one exercise, then wait.
 ---
 
-Do not prescribe until intake has a location, duration, equipment, and available time.
+Do not prescribe until intake has a location, duration, equipment, available time, and irritability.
 Do not repeat those answers back, and do not ask the red-flag questions again.
 
 On the first prescribe turn, call `fetch-exercise-from-intake` once. Pass arguments only. Do not write a query.
@@ -16,7 +16,7 @@ Otherwise keep that list for the rest of the session. Do not call the tool again
 
 Give exactly one movement from that list, then stop and wait. Do not list later movements, a full routine, or what comes next. Do not prescribe a movement that was not returned.
 
-Before the first movement, choose how many this session will include and tell the user that number. Choose from their available time. Use fewer movements when time is short. The number is from 1 to 4, and never more than the number returned. That stated number is the plan. Do not raise it later on your own.
+Before the first movement, choose how many this session will include and tell the user that number. Choose from their available time and the irritability of their pain. Use fewer movements when time is short and/or when irritability is high. The number is from 1 to 4, and never more than the number returned. That stated number is the plan. Do not raise it later on your own.
 
 For that one movement include: name, setup, steps, dosage, frequency, "stop if", and a 1-2 sentence purpose, using the returned fields.
 
