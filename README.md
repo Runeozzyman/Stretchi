@@ -13,6 +13,23 @@ If something sounds like it needs a doctor, Stretchi says so and stops. Otherwis
 
 ![Stretchi Session Flow](docs/stretchi-diagram.png)
 
+## Supported Target Areas
+
+Currently, Stretchi supports guidance for movements in the following target areas:
+- Neck
+- Back
+- Shoulder
+- Elbow
+- Wrist
+- Hands
+- Hip
+- Glutes
+- Hamstrings
+- Knee
+- Calves
+- Ankle
+- Feet
+
 ## Layout
 
 - `stretchi/agent/instructions.md` — identity, hard rules, and session order
