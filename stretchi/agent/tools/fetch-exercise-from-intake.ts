@@ -2,6 +2,8 @@ import {defineTool} from "eve/tools";
 import z from "zod";
 import {prescribeRoutineLoaded} from "../lib/prescribe-routine-loaded";
 
+//TODO: use defineState for caching fetched movement catalog
+
 const exerciseQuery = `
   query Exercises($body_area: String!, $equipment: [String!]!) {
     exercises(body_area: $body_area, equipment: $equipment) {

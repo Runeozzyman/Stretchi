@@ -3,6 +3,8 @@
 ## Current Tasks
 - [ ] [P1] [2026-09-25] Refactor intake to take data from a pre-screen questionnaire alternatively (body map, simple Q&A)
 - [ ] [P1] [2026-09-28] Explore possible agent connections (discord, slack ?)
+- [ ] [P1] [2026-10-01] Use defineState to store fetched exercise catalog
+- [ ] [P1] [2026-10-01] Add tools for ending session and exporting routine as .ics
 
 ## Completed Tasks
 - [x] [P1] [2026-09-23] Refactor model to GPT 5.4-mini (low cost, high volume)
